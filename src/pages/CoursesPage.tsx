@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Box, Typography} from "@mui/material";
 import Pagination from "@mui/material/Pagination";
-import {getCoursesData} from "../service/coursesService";
+import {getCoursesData} from "../service/apiService";
 import { ICourse } from "../types/types";
 import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader";

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ICourseDetails, ILesson } from "../types/types";
-import { getCourseById } from "../service/coursesService";
-import { useParams, Link } from "react-router-dom";
+import { getCourseById } from "../service/apiService";
+import { useParams } from "react-router-dom";
 import { List, ListItem, Typography, Button } from "@mui/material";
 import Loader from "../components/Loader";
 import Player from "../components/Player";
 import BasicModal from "../components/BasicModal";
-import exp from "constants";
 
 const Course = () => {
     const [course, setCourse] = useState<ICourseDetails>();
