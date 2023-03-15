@@ -8,7 +8,6 @@ function App() {
   return (
     <>
         <Header title={"My courses"}/>
-        <NavLink to="/core/preview-courses">Courses Page</NavLink>
         <Routes>
             <Route path="/core/preview-courses/" element={<CoursesPage/>}/>
             <Route path="/core/preview-courses/:courseId" element={<CoursePage />} />

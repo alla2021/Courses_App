@@ -15,4 +15,16 @@ export async function getCoursesData() {
         console.error(error);
     }
 }
-
+export async function getCourseById(id: string | undefined) {
+    try {
+        const response = await fetch(URL + coursesURL + id, {
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`
+            }
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}

@@ -13,13 +13,12 @@ const CoursesPage : React.FC = () => {
     const postsPerPage: number = 10;
 
     useEffect(() => {
-        async function getData() {
+        (async function getData() {
             setIsLoading(true);
             const data = await getCoursesData();
             setCourses(data.courses);
             setIsLoading(false);
-        }
-        getData();
+        })()
     }, []);
 
     function calculateVisibleCourses(courses: ICourse[], currentPage: number): ICourse[] {
@@ -40,7 +39,6 @@ const CoursesPage : React.FC = () => {
 
     return (
         <>
-            <Typography  gutterBottom variant="h2">Courses Page</Typography>
             {isLoading ? (
                 <Loader />
             ) : (

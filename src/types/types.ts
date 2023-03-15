@@ -19,17 +19,20 @@ export interface ICourse {
             previewImageLink: string;
         };
     };
+    lessons: ILesson[];
+
 }
 
 
-// export interface ILesson {
-//     id: string;
-//     title: string;
-//     duration: number;
-//     order: number;
-//     type: 'video' | 'text';
-//     status: 'locked' | 'unlocked';
-//     link?: string;
-//     previewImageLink: string;
-//     meta?: Record<string, any> | null;
-// }
+export interface ILesson {
+    id: string;
+    title: string;
+    duration: number;
+    order: number;
+    type: string;
+    status: string;
+    link: string;
+    previewImageLink: string;
+    meta: null;
+}
+
