@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
-type PlayerProps={
-    video: string,
+import {Typography} from "@mui/material";
+import {ILesson} from "../types/types";
+
+interface IPlayerProps {
+    lesson: ILesson;
 }
 
-
-const Player = ({video}:PlayerProps) => {
+const Player = ({lesson}:IPlayerProps ) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
@@ -19,17 +21,8 @@ const Player = ({video}:PlayerProps) => {
 
     return (
         <div>
-            <video
-                ref={videoRef}
-                width="100%"
-                height="100%"
-                controls
-            >
-                <source src={video} type="video/mp4" />
-            </video>
-            {/*<button onClick={togglePlay}>*/}
-            {/*    {isPlaying ? "Pause" : "Play"}*/}
-            {/*</button>*/}
+            <Typography variant="h4">{lesson.title}</Typography>
+            <video src={lesson.link} controls />
         </div>
     )
 }

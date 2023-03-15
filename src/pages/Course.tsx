@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ICourseDetails, ILesson } from "../types/types";
 import { getCourseById } from "../service/coursesService";
 import { useParams } from "react-router-dom";
-import { Link, List, ListItem, Typography } from "@mui/material";
+import { List, ListItem, Typography } from "@mui/material";
 import Loader from "../components/Loader";
 import Player from "../components/Player";
 
@@ -32,14 +32,20 @@ const Course = () => {
 
     const { title, description, lessons } = course;
 
+
     return (
         <div>
-            <Typography variant="h4">{title}</Typography>
-            <Typography variant="body2">{description}</Typography>
+            <Typography variant="h4">Course name: {title}</Typography>
+            <Typography variant="body2">Description: {description}</Typography>
+            <Player lesson={lessons[0]} />
             {lessons && lessons.length > 0 && (
                 <List>
-                    {lessons.map((item) => (
-                        <ListItem key={item.id}>{item.title}</ListItem>
+                    {lessons.slice(1, lessons.length).map((item) => (
+                        <ListItem key={item.id}>
+                            <Typography variant="body2">
+                                {item.status === 'locked' ? `${item.title} (locked)` : item.title}
+                            </Typography>
+                        </ListItem>
                     ))}
                 </List>
             )}
