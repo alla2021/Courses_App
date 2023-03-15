@@ -1,9 +1,9 @@
-export interface ICourse {
+export type ICourse = {
     id: string;
     title: string;
     tags: string[];
     launchDate: string;
-    status: "launched" | "archived";
+    status: string;
     description: string;
     duration: number;
     lessonsCount: number;
@@ -19,12 +19,34 @@ export interface ICourse {
             previewImageLink: string;
         };
     };
+    lessons: ILesson[]; // add lessons property
+};
+
+export type ICourseDetails = {
+    id: string;
+    title: string;
+    tags: string[];
+    launchDate: string;
+    status: string;
+    description: string;
+    duration: number;
+    previewImageLink: string;
+    rating: number;
+    meta: {
+        slug: string;
+        skills: string[];
+        courseVideoPreview: {
+            link: string;
+            duration: number;
+            previewImageLink: string;
+        };
+    };
     lessons: ILesson[];
+    containsLockedLessons: boolean;
 
-}
+};
 
-
-export interface ILesson {
+export type ILesson = {
     id: string;
     title: string;
     duration: number;
@@ -33,6 +55,8 @@ export interface ILesson {
     status: string;
     link: string;
     previewImageLink: string;
-    meta: null;
-}
+};
+
+
+
 
