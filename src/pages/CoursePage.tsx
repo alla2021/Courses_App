@@ -23,7 +23,7 @@ const CoursePage = () => {
 
     return (
         <>
-            {!data ? ( Loader()
+            {!data ? ( <Loader/>
             ) : (
                 <>
                     <Typography variant="h3" gutterBottom>{data.title}</Typography>

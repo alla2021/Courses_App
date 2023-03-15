@@ -6,15 +6,18 @@ import { ICourse } from "../types/types";
 import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader";
 
-const CoursesPage : React.FC= () => {
+const CoursesPage : React.FC = () => {
     const [courses, setCourses] = useState<ICourse[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const postsPerPage: number = 10;
 
     useEffect(() => {
         async function getData() {
+            setIsLoading(true);
             const data = await getCoursesData();
             setCourses(data.courses);
+            setIsLoading(false);
         }
         getData();
     }, []);
@@ -37,22 +40,27 @@ const CoursesPage : React.FC= () => {
 
     return (
         <>
-        <Typography  gutterBottom variant="h2">Courses Page</Typography>
-            <Box
-                maxWidth="lg"
-                sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, justifyContent: 'center', margin:'0 auto'}}
-            >
-            {courses.length <= 0 ? (
-                Loader()
-            ) : (visibleCourses.map((course) => (
-                    <CourseCard key={course.id} course={course} />
-                ))
+            <Typography  gutterBottom variant="h2">Courses Page</Typography>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <>
+                    <Box
+                        maxWidth="lg"
+                        sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, justifyContent: 'center', margin:'0 auto'}}
+                    >
+                        {visibleCourses.map((course) => (
+                            <CourseCard key={course.id} course={course} />
+                        ))}
+                    </Box>
+                    {!isLoading && (
+                        <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>
+                            <Pagination count={totalPageCount()} onChange={handelChange}/>
+                        </Box>
+                    )}
+                </>
             )}
-            </Box>
-            <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>
-                <Pagination count={totalPageCount()} onChange={handelChange}/>
-            </Box>
-    </>
+        </>
     );
 }
 
