@@ -4,26 +4,20 @@ import {ILesson} from "../types/types";
 
 interface IPlayerProps {
     lesson: ILesson;
+    onClick?: () => void;
 }
 
 const Player = ({lesson}:IPlayerProps ) => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const videoRef = useRef(null);
-
-    // const togglePlay = () => {
-    //     if (isPlaying) {
-    //         videoRef.current.pause();
-    //     } else {
-    //         videoRef.current.play();
-    //     }
-    //     setIsPlaying(!isPlaying);
-    // };
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     return (
         <div>
-            <Typography variant="h4">{lesson.title}</Typography>
-            <video src={lesson.link} controls />
+            <Typography variant="body2">{lesson.title}</Typography>
+            <video
+                poster={`${lesson.previewImageLink}/${lesson.order}cover.webp`}
+                src={lesson.link} controls />
         </div>
+
     )
 }
 
