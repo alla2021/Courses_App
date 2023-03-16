@@ -1,18 +1,23 @@
-//https://www.postman.com/aninix/workspace/genesis-front-end-school/overview
-
-const URL='https://api.wisey.app/api/v1/'
+const URL=`https://api.wisey.app/api/v1/`;
+const URL_TOKEN=`auth/anonymous?platform=subscriptions`;
 const coursesURL="core/preview-courses/";
-const TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZDExMmQ1Zi1mYzQyLTQ1NGQtODYxMi0yMjdlNzE0ZDYxZDgiLCJwbGF0Zm9ybSI6InN1YnNjcmlwdGlvbnMiLCJpYXQiOjE2Nzg3MzQzNDgsImV4cCI6MTY3OTYzNDM0OH0.W27uaI6VYhfXaJ9Wp9n1H4YqkqkqL9Kct5vzKO6s3gs'
-const getToken = async () => {
+
+export async function fetchToken() {
+    let TOKEN = null;
     try {
-        const res = await fetch("auth/anonymous?platform=subscriptions");
-        const data = await res.json();
-        return data;
+        const res = await fetch(
+            URL+URL_TOKEN,
+        );
+        TOKEN = await res.json() as any;
+        console.log(TOKEN)
+        return TOKEN.token;
     } catch (error) {
         console.error(error);
     }
-};
+}
+
 export async function getCoursesData() {
+    let TOKEN = await fetchToken();
     try {
         const response = await fetch(URL+coursesURL, {
             headers: {
@@ -26,6 +31,7 @@ export async function getCoursesData() {
     }
 }
 export async function getCourseById(id: string | undefined) {
+    let TOKEN = await fetchToken();
     try {
         const response = await fetch(URL + coursesURL + id, {
             headers: {
