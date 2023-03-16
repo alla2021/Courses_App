@@ -6,6 +6,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [
+      "hls.js"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

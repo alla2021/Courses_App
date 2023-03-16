@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from "react";
-import {Box, Typography} from "@mui/material";
+import { Box } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import {getCoursesData} from "../service/apiService";
 import { ICourse } from "../types/types";

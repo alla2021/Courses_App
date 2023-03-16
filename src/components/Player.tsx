@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Typography} from "@mui/material";
 import {ILesson} from "../types/types";
-import ReactPlayer from "react-player";
+import Hls from 'hls.js';
 
 interface IPlayerProps {
     lesson: ILesson;
@@ -11,12 +11,32 @@ interface IPlayerProps {
 const Player = ({lesson}:IPlayerProps ) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
+    useEffect(() => {
+        const video = videoRef.current;
+
+        if (!video) return;
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(lesson.link);
+            hls.attachMedia(video);
+        } else {
+            video.src = lesson.link;
+        }
+
+        return () => {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.destroy();
+            }
+        };
+    }, [lesson.link]);
+
     const handlePlay = () => {
         if (videoRef.current) {
             videoRef.current.play();
         }
     };
-console.log(`${lesson.link}`)
     return (
         <div>
             <Typography variant="body2">{lesson.title}</Typography>
@@ -27,14 +47,11 @@ console.log(`${lesson.link}`)
                 height='200px'
                 onPlay={handlePlay}
                 ref={videoRef}
-                src={lesson.link}
                 muted
             >
-            {/*<source  src={lesson.link} type="application/x-mpegURL" />*/}
             </video>
         </div>
-
-    )
-}
+    );
+};
 
 export default Player;

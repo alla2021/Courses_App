@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header"
 import CourseDetails from "./pages/CourseDetails";
 import CoursesPage from "./pages/CoursesPage";
