@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useMemo} from 'react';
 import {
     Card,
     CardActions,
@@ -11,9 +11,13 @@ import { NavLink } from "react-router-dom";
 
 interface CoursesProps {
     course: ICourse;
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
 }
 
-function CourseCard({ course }: CoursesProps) {
+function CourseCard ({ course, onMouseEnter, onMouseLeave }: CoursesProps) {
+    const [isHover, setIsHover] = useState<boolean>(false);
+
     return (
         <>
                 <Card
@@ -24,11 +28,19 @@ function CourseCard({ course }: CoursesProps) {
                         m: 2,
                         width: 240,
                     }}
+                    onMouseEnter={() => {
+                        setIsHover(true);
+                        onMouseEnter();
+                    }}
+                    onMouseLeave={() => {
+                        setIsHover(false);
+                        onMouseLeave();
+                    }}
                 >
                     <CardMedia
                         component="img"
                         height="140"
-                        src={course.previewImageLink + '/cover.webp'}
+                        src={!isHover ? course.previewImageLink + '/cover.webp' : course.meta.courseVideoPreview.link }
                         alt={course.title}
                     />
                     <CardContent>

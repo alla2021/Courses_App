@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Box, Typography} from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import {getCoursesData} from "../service/apiService";
 import { ICourse } from "../types/types";
 import CourseCard from "../components/CourseCard";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader/Loader";
 
 const CoursesPage : React.FC = () => {
     const [courses, setCourses] = useState<ICourse[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isHover, setIsHover] = useState<boolean>(false);
     const postsPerPage: number = 10;
 
     useEffect(() => {
@@ -21,17 +22,18 @@ const CoursesPage : React.FC = () => {
         })()
     }, []);
 
-    function calculateVisibleCourses(courses: ICourse[], currentPage: number): ICourse[] {
+    const visibleCourses = useMemo(() => {
         const startIndex: number = (currentPage - 1) * postsPerPage;
-        const visibleCourses: ICourse[] = courses.slice(startIndex, startIndex + postsPerPage);
+        const visibleCourses: ICourse[] = courses.slice(
+            startIndex,
+            startIndex + postsPerPage
+        );
         return visibleCourses;
-    }
+    }, [currentPage, courses, postsPerPage]);
 
     function totalPageCount(){
         return Math.ceil(courses.length / postsPerPage);
     }
-
-    const visibleCourses = calculateVisibleCourses(courses, currentPage);
 
     const handelChange=(e: React.ChangeEvent<unknown>, page: number)=>{
         setCurrentPage(page)
@@ -48,7 +50,10 @@ const CoursesPage : React.FC = () => {
                         sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, justifyContent: 'center', margin:'0 auto'}}
                     >
                         {visibleCourses.map((course) => (
-                            <CourseCard key={course.id} course={course} />
+                            <CourseCard key={course.id} course={course}
+                                        onMouseEnter={() => setIsHover(true)}
+                                        onMouseLeave={() => setIsHover(false)}
+                            />
                         ))}
                     </Box>
                     {!isLoading && (

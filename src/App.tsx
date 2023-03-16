@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Route, Routes } from "react-router-dom";
-import Header from "./components/Header"
-import Course from "./pages/Course";
+import Header from "./components/Header/Header"
+import CourseDetails from "./pages/CourseDetails";
 import CoursesPage from "./pages/CoursesPage";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <Header title={"My courses"}/>
         <Routes>
             <Route path="/core/preview-courses/" element={<CoursesPage/>}/>
-            <Route path="/core/preview-courses/:courseId" element={<Course />} />
+            <Route path="/core/preview-courses/:courseId" element={<CourseDetails />} />
         </Routes>
     </>
   );

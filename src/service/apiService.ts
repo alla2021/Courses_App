@@ -9,7 +9,6 @@ export async function fetchToken() {
             URL+URL_TOKEN,
         );
         TOKEN = await res.json() as any;
-        console.log(TOKEN)
         return TOKEN.token;
     } catch (error) {
         console.error(error);

@@ -3,11 +3,11 @@ import { ICourseDetails, ILesson } from "../types/types";
 import { getCourseById } from "../service/apiService";
 import { useParams } from "react-router-dom";
 import { List, ListItem, Typography, Button } from "@mui/material";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader/Loader";
 import Player from "../components/Player";
-import BasicModal from "../components/BasicModal";
+import BasicModal from "../components/BasicModal/BasicModal";
 
-const Course = () => {
+const CourseDetails = () => {
     const [course, setCourse] = useState<ICourseDetails>();
     const { courseId } = useParams<{ courseId: string }>();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -82,4 +82,4 @@ const Course = () => {
     );
 };
 
-export default Course
+export default CourseDetails
