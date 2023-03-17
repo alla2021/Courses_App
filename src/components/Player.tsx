@@ -1,6 +1,6 @@
-import React, {useEffect, useRef} from 'react';
-import {Typography} from "@mui/material";
-import {ILesson} from "../types/types";
+import React, { useEffect, useRef } from 'react';
+import { Typography } from "@mui/material";
+import { ILesson } from "../types/types";
 import Hls from 'hls.js';
 
 interface IPlayerProps {
@@ -13,15 +13,18 @@ const Player = ({lesson}:IPlayerProps ) => {
 
     useEffect(() => {
         const video = videoRef.current;
-
         if (!video) return;
-
         if (Hls.isSupported()) {
             const hls = new Hls();
             hls.loadSource(lesson.link);
             hls.attachMedia(video);
         } else {
             video.src = lesson.link;
+        }
+        const progress = JSON.parse(localStorage.getItem('progress') || '{}');
+        const savedTime = progress[lesson.id];
+        if (savedTime) {
+            video.currentTime = savedTime;
         }
 
         return () => {
@@ -32,11 +35,21 @@ const Player = ({lesson}:IPlayerProps ) => {
         };
     }, [lesson.link]);
 
+
+    const saveProgress = (lessonId: string, currentTime: number) => {
+        const progress = JSON.parse(localStorage.getItem('progress') || '{}');
+        progress[lessonId] = currentTime;
+        localStorage.setItem('progress', JSON.stringify(progress));
+    };
+
     const handlePlay = () => {
         if (videoRef.current) {
+            const currentTime = videoRef.current.currentTime;
+            saveProgress(lesson.id, currentTime);
             videoRef.current.play();
         }
     };
+
     return (
         <div>
             <Typography variant="body2">{lesson.title}</Typography>
@@ -47,7 +60,6 @@ const Player = ({lesson}:IPlayerProps ) => {
                 height='200px'
                 onPlay={handlePlay}
                 ref={videoRef}
-                muted
             >
             </video>
         </div>

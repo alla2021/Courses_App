@@ -7,6 +7,7 @@ import CourseCard from "../components/CourseCard";
 import Loader from "../components/Loader/Loader";
 
 const CoursesPage : React.FC = () => {
+
     const [courses, setCourses] = useState<ICourse[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
