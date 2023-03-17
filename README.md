@@ -16,6 +16,12 @@ To install and run the app locally, follow these steps:
 Install dependencies: **npm install**
 Start the development server: **npm run start**
 
+## Tests
+
+To run the tests, use the following command:
+
+**jest**
+
 ## Dependencies
 
 This app uses the following dependencies:
