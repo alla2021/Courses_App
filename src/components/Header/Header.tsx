@@ -5,7 +5,6 @@ import {NavLink} from "react-router-dom";
 type HeaderProps = {
     title: string,
 }
-
 const Header = ({title}: HeaderProps) => {
     return(
         <AppBar

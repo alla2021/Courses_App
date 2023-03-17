@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ICourseDetails, ILesson } from "../types/types";
 import { getCourseById } from "../service/apiService";
 import { useParams } from "react-router-dom";
-import { List, ListItem, Typography, Button } from "@mui/material";
+import {List, ListItem, Typography, Button, Box, CardMedia} from "@mui/material";
 import Loader from "../components/Loader/Loader";
 import Player from "../components/Player";
 import BasicModal from "../components/BasicModal/BasicModal";
@@ -40,15 +40,23 @@ const CourseDetails = () => {
 
     return (
         <div>
-            <Typography variant="h4">Course name: {title}</Typography>
-            <Typography variant="body2">Description: {description}</Typography>
-            <Player lesson={lessons[0]} />
+            <Box sx={{ display: 'flex', justifyContent: 'center', margin :' 0 auto', flexDirection: 'column', width: "60%" }}>
+                <Typography variant="h4">Course name: {title}</Typography>
+                <Typography variant="body2">Description: {description}</Typography>
+                <Player lesson={lessons[0]} />
+            </Box>
             {lessons && lessons.length > 0 && (
                 <List>
                     {lessons.slice(1, lessons.length).map((item) => (
                         <ListItem key={item.id}>
                             {item.status === "locked" ? (
                                 <>
+                                    <CardMedia
+                                        component="img"
+                                        sx={{ width: '250px' }}
+                                        alt={item.title}
+                                        src={`${item.previewImageLink}/lesson-${item.order}.webp`}
+                                    />
                                     <Typography variant="body2">{item.title}</Typography>
                                     <Typography
                                         variant="caption"
@@ -63,7 +71,12 @@ const CourseDetails = () => {
                                 <Button variant="text" onClick={() => {
                                     setSelectedLesson(item);
                                     handleOpen();
-                                }}>
+                                }}>                            <CardMedia
+                                    component="img"
+                                    sx={{ width: '250px' }}
+                                    alt={item.title}
+                                    src={`${item.previewImageLink}/lesson-${item.order}.webp`}
+                                />
                                     <Typography variant="body2">{item.title}</Typography>
                                 </Button>
                             )}
