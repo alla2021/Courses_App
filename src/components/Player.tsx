@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Typography, Box } from "@mui/material";
-import { ILesson } from "../types/types";
+import {ICourse, ILesson} from "../types/types";
 import Hls from 'hls.js';
 
 interface IPlayerProps {
@@ -54,7 +54,6 @@ const Player = ({lesson}:IPlayerProps ) => {
         <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection: 'column'}}  >
             <Typography variant="body2">{lesson.title}</Typography>
             <video
-                // poster={`${lesson.previewImageLink}/${lesson.order}/cover.webp`}
                 controls
                 width='100%'
                 onPlay={handlePlay}
