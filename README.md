@@ -5,7 +5,7 @@
 💡 The task is to create an application for learning. My App is a web application built with React.
 API: https://www.postman.com/aninix/workspace/genesis-front-end-school/overview
 The application contains two pages:
-- page with courses; http://localhost:3000/core/preview-courses
+- page with courses; 
 - lesson viewing page.
 
 ## Installation
