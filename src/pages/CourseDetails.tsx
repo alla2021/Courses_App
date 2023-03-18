@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ICourseDetails, ILesson } from "../types/types";
 import { getCourseById } from "../service/apiService";
 import { useParams } from "react-router-dom";
-import {List, ListItem, Typography, Button, Box, CardMedia, Card} from "@mui/material";
+import { Typography, Box, CardMedia, Card} from "@mui/material";
 import Loader from "../components/Loader/Loader";
-import Player from "../components/Player";
+import Player from "../components/Player/Player";
 import BasicModal from "../components/BasicModal/BasicModal";
 
 const CourseDetails = () => {
@@ -43,11 +43,9 @@ const CourseDetails = () => {
             <Box sx={{ display: 'flex', justifyContent: 'center', margin :' 0 auto', flexDirection: 'column', width: "60%" }}>
                 <Typography variant="h4">Course name: {title}</Typography>
                 <Typography variant="body2">Description: {description}</Typography>
-                <Player lesson={lessons[0]} />
+                <Player lesson={lessons[0]} controls={true}/>
             </Box>
-
             {lessons && lessons.length > 0 && (
-
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center', mt: 2,}}>
                     {lessons.slice(1, lessons.length).map((item) => (
                         <Box  sx={{maxWidth:'300px', }}>
@@ -91,7 +89,6 @@ const CourseDetails = () => {
                                     onClick={() => {
                                     setSelectedLesson(item);
                                     handleOpen();
-
                                 }}>
                                     <CardMedia
                                         component="img"
@@ -105,7 +102,6 @@ const CourseDetails = () => {
                         </Box>
                     ))}
                 </Box>
-
             )}
             {selectedLesson && (
                 <BasicModal
@@ -114,7 +110,6 @@ const CourseDetails = () => {
                     handleClose={handleClose}
                 />
             )}
-
         </div>
     );
 };

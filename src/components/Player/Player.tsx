@@ -1,14 +1,20 @@
 import React, { useEffect, useRef } from 'react';
-import { Typography, Box } from "@mui/material";
-import {ICourse, ILesson} from "../types/types";
+import { Box } from "@mui/material";
+import { ILesson } from "../../types/types";
 import Hls from 'hls.js';
 
 interface IPlayerProps {
-    lesson: ILesson;
+    lesson?: ILesson;
     onClick?: () => void;
+    url?:string;
+
+    muted?: boolean;
+    autoPlay?:boolean;
+    controls?:boolean;
 }
 
-const Player = ({lesson}:IPlayerProps ) => {
+
+const Player = ({ lesson, url, muted, autoPlay, controls }: IPlayerProps) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -16,13 +22,13 @@ const Player = ({lesson}:IPlayerProps ) => {
         if (!video) return;
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource(lesson.link);
+            hls.loadSource(url || lesson?.link || '');
             hls.attachMedia(video);
         } else {
-            video.src = lesson.link;
+            video.src = url || lesson?.link || '';
         }
         const progress = JSON.parse(localStorage.getItem('progress') || '{}');
-        const savedTime = progress[lesson.id];
+        const savedTime = progress[lesson?.id || url || ''];
         if (savedTime) {
             video.currentTime = savedTime;
         }
@@ -33,33 +39,32 @@ const Player = ({lesson}:IPlayerProps ) => {
                 hls.destroy();
             }
         };
-    }, [lesson.link]);
+    }, [lesson?.id, lesson?.link, url]);
 
-
-    const saveProgress = (lessonId: string, currentTime: number) => {
+    const saveProgress = (id: string, currentTime: number) => {
         const progress = JSON.parse(localStorage.getItem('progress') || '{}');
-        progress[lessonId] = currentTime;
+        progress[id] = currentTime;
         localStorage.setItem('progress', JSON.stringify(progress));
     };
 
     const handlePlay = () => {
         if (videoRef.current) {
             const currentTime = videoRef.current.currentTime;
-            saveProgress(lesson.id, currentTime);
+            saveProgress(lesson?.id || url || '', currentTime);
             videoRef.current.play();
         }
-    };
+    }
 
     return (
-        <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection: 'column', width:'100%'}}  >
-            <Typography variant="body2">{lesson.title}</Typography>
+        <Box>
             <video
-                controls
+                controls={controls || false}
                 width='100%'
                 onPlay={handlePlay}
                 ref={videoRef}
-            >
-            </video>
+                autoPlay={autoPlay||false}
+                muted={muted || false}
+            />
         </Box>
     );
 };

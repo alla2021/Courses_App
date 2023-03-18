@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Modal from '@mui/material/Modal';
-import Player from "../Player";
+import Player from "../Player/Player";
 import {ILesson} from "../../types/types";
-import {Box, Button} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import style from "./style";
 
 interface IModalProps {
@@ -26,9 +26,9 @@ const BasicModal = ({lesson, isModalOpen, handleClose}:IModalProps) =>{
                         Close
                     </Button>
                     </Box>
-                    <Player lesson={lesson}/>
+                    <Typography variant='h4'>{lesson.title}</Typography>
+                    <Player lesson={lesson} controls={true}/>
                 </Box>
-
             </Modal>
         </div>
     );
