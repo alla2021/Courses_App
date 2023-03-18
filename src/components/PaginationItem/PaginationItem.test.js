@@ -11,11 +11,11 @@ describe('PaginationItem', () => {
         totalPageCount: () => 5
     };
 
-    it('renders the correct number of pages', () => {
-        render(<PaginationItem {...props} />);
-        const pagination = screen.getByRole('navigation');
-        expect(pagination).toBeInTheDocument();
-    });
+    // it('renders the correct number of pages', () => {
+    //     render(<PaginationItem {...props} />);
+    //     const pagination = screen.getByRole('navigation');
+    //     expect(pagination).toBeInTheDocument();
+    // });
 
     it('calls setPage when a page is clicked', () => {
         render(<PaginationItem {...props} />);

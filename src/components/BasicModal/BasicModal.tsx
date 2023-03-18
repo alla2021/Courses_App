@@ -21,7 +21,8 @@ const BasicModal = ({lesson, isModalOpen, handleClose}:IModalProps) =>{
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}><Button onClick={handleClose}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button onClick={handleClose}>
                         Close
                     </Button>
                     </Box>

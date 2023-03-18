@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ICourseDetails, ILesson } from "../types/types";
 import { getCourseById } from "../service/apiService";
 import { useParams } from "react-router-dom";
-import {List, ListItem, Typography, Button, Box, CardMedia} from "@mui/material";
+import {List, ListItem, Typography, Button, Box, CardMedia, Card} from "@mui/material";
 import Loader from "../components/Loader/Loader";
 import Player from "../components/Player";
 import BasicModal from "../components/BasicModal/BasicModal";
@@ -45,12 +45,54 @@ const CourseDetails = () => {
                 <Typography variant="body2">Description: {description}</Typography>
                 <Player lesson={lessons[0]} />
             </Box>
+
             {lessons && lessons.length > 0 && (
-                <List>
+
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center', mt: 2,}}>
                     {lessons.slice(1, lessons.length).map((item) => (
-                        <ListItem key={item.id}>
+                        <Box  sx={{maxWidth:'300px', }}>
                             {item.status === "locked" ? (
                                 <>
+                                    <Card key={item.id} sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between',
+                                        m: 2,
+                                        width: 240,
+                                    }}>
+                                        <CardMedia
+                                            component="img"
+                                            sx={{ width: '250px' }}
+                                            alt={item.title}
+                                            src={`${item.previewImageLink}/lesson-${item.order}.webp`}
+                                        />
+                                        <Typography variant="body2">{item.title}</Typography>
+                                        <Typography
+                                            variant="caption"
+                                            color="#f50057"
+                                            display="block"
+                                            gutterBottom
+                                        >
+                                            (locked)
+                                        </Typography>
+                                    </Card>
+                                </>
+                            ) : (
+                                <Card
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between',
+                                        m: 2,
+                                        width: 240,
+                                        cursor: 'pointer'
+                                    }}
+                                    key={item.id}
+                                    onClick={() => {
+                                    setSelectedLesson(item);
+                                    handleOpen();
+
+                                }}>
                                     <CardMedia
                                         component="img"
                                         sx={{ width: '250px' }}
@@ -58,31 +100,12 @@ const CourseDetails = () => {
                                         src={`${item.previewImageLink}/lesson-${item.order}.webp`}
                                     />
                                     <Typography variant="body2">{item.title}</Typography>
-                                    <Typography
-                                        variant="caption"
-                                        color="#f50057"
-                                        display="block"
-                                        gutterBottom
-                                    >
-                                        (locked)
-                                    </Typography>
-                                </>
-                            ) : (
-                                <Button variant="text" onClick={() => {
-                                    setSelectedLesson(item);
-                                    handleOpen();
-                                }}>                            <CardMedia
-                                    component="img"
-                                    sx={{ width: '250px' }}
-                                    alt={item.title}
-                                    src={`${item.previewImageLink}/lesson-${item.order}.webp`}
-                                />
-                                    <Typography variant="body2">{item.title}</Typography>
-                                </Button>
+                                </Card >
                             )}
-                        </ListItem>
+                        </Box>
                     ))}
-                </List>
+                </Box>
+
             )}
             {selectedLesson && (
                 <BasicModal
@@ -91,6 +114,7 @@ const CourseDetails = () => {
                     handleClose={handleClose}
                 />
             )}
+
         </div>
     );
 };

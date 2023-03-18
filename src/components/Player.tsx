@@ -51,7 +51,7 @@ const Player = ({lesson}:IPlayerProps ) => {
     };
 
     return (
-        <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection: 'column'}}  >
+        <Box sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection: 'column', width:'100%'}}  >
             <Typography variant="body2">{lesson.title}</Typography>
             <video
                 controls
