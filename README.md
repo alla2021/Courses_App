@@ -6,9 +6,14 @@
 API: https://www.postman.com/aninix/workspace/genesis-front-end-school/overview
 The application contains two pages:
 - page with courses; 
-- lesson viewing page.
+![12](https://user-images.githubusercontent.com/75502074/228561588-86cc89d0-1d3b-4866-9307-83b8f17f1d1c.png)
+*When hovering over the video card, the promotional video of a specific lecture is automatically started to play.
 
-![2023-03-29 16_30_37-React App](https://user-images.githubusercontent.com/75502074/228560240-7d0ef868-1f6d-4afa-9bc3-9a835d35d413.png)
+- lesson viewing page.
+![13](https://user-images.githubusercontent.com/75502074/228561615-862fdb69-357f-428d-9fad-a8d310a9df59.png)
+*When you click on a video, a modal window of a specific lesson opens.
+*Video playback data is stored locally.
+![17](https://user-images.githubusercontent.com/75502074/228562773-4d82926b-fc1d-4e87-9b9e-ea2a0987acf2.png)
 
 ## Installation
 
@@ -57,3 +62,4 @@ npm run eject: ejects the app from react-scripts
 
 ## Launch Features
 Backend shards of the backend can be exchanged for CORS policies by the viconate of the zadannya was helped by installing a special plugin on Chrome https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
+![1](https://user-images.githubusercontent.com/75502074/228560413-df028f88-85c7-4bf6-8da0-0012e75aa162.png)
