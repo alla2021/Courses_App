@@ -1,10 +1,10 @@
 import React, {useEffect, useMemo, useState} from "react";
 import { Box } from "@mui/material";
 import PaginationItem from "../components/PaginationItem/PaginationItem";
-import { getCoursesData } from "../service/apiService";
-import { ICourse } from "../types/types";
-import CourseCard from "../components/CourseCard";
+import { getCoursesData } from "../service/api/apiService";
+import CourseCard from "../components/CourseCard/CourseCard";
 import Loader from "../components/Loader/Loader";
+import {ICourse} from "../types/ICourse";
 
 const CoursesPage : React.FC = () => {
     const [courses, setCourses] = useState<ICourse[]>([]);

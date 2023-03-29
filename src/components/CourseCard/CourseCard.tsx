@@ -7,9 +7,9 @@ import {
     CardMedia,
     Typography,
 } from '@mui/material';
-import { ICourse } from "../types/types";
 import { NavLink } from "react-router-dom";
-import Player from "./Player/Player";
+import Player from "../Player/Player";
+import {ICourse} from "../../types/ICourse";
 
 interface CoursesProps {
     course: ICourse;

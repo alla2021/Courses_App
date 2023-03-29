@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Modal from '@mui/material/Modal';
 import Player from "../Player/Player";
-import {ILesson} from "../../types/types";
 import {Box, Button, Typography} from "@mui/material";
 import style from "./style";
+import {ILesson} from "../../types/ILesson";
 
 interface IModalProps {
     lesson: ILesson;

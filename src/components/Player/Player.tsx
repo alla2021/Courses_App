@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Box } from "@mui/material";
-import { ILesson } from "../../types/types";
 import Hls from 'hls.js';
+import {ILesson} from "../../types/ILesson";
 
 interface IPlayerProps {
     lesson?: ILesson;

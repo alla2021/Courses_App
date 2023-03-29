@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ICourseDetails, ILesson } from "../types/types";
-import { getCourseById } from "../service/apiService";
+import { getCourseById } from "../service/api/apiService";
 import { useParams } from "react-router-dom";
 import { Typography, Box, CardMedia, Card} from "@mui/material";
 import Loader from "../components/Loader/Loader";
 import Player from "../components/Player/Player";
 import BasicModal from "../components/BasicModal/BasicModal";
+import {ICourseDetails} from "../types/ICourseDetails";
+import {ILesson} from "../types/ILesson";
 
 const CourseDetails = () => {
     const [course, setCourse] = useState<ICourseDetails>();
