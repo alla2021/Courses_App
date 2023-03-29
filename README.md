@@ -52,3 +52,6 @@ npm start: starts the development server
 npm run build: builds the app for production
 npm test: runs the tests
 npm run eject: ejects the app from react-scripts
+
+## Launch Features
+Backend shards of the backend can be exchanged for CORS policies by the viconate of the zadannya was helped by installing a special plugin on Chrome https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
