@@ -8,6 +8,8 @@ The application contains two pages:
 - page with courses; 
 - lesson viewing page.
 
+![2023-03-29 16_30_37-React App](https://user-images.githubusercontent.com/75502074/228560240-7d0ef868-1f6d-4afa-9bc3-9a835d35d413.png)
+
 ## Installation
 
 To install and run the app locally, follow these steps:
