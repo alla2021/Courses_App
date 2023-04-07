@@ -1,4 +1,4 @@
-# Front-End School 2.0 / Test-task
+# Front-End School 2.0 / Courses App
 
 ## Description
 
