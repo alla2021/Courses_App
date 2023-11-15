@@ -1,6 +1,6 @@
 # Front-End School 2.0 / Courses App
 
-## Project Deployment: [View Project](https://alla2021.github.io/core/preview-courses)
+## Project Deployment: https://alla2021.github.io/Courses_App/
 
 **Please note that this is a test project, and it has a CORS issue as specified in the test assignment.**
 
