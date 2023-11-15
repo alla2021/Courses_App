@@ -5,13 +5,14 @@ import {
 import Header from "./components/Header/Header"
 import CourseDetails from "./pages/CourseDetails";
 import CoursesPage from "./pages/CoursesPage";
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <>
-        <Header title={"My courses"}/>
+        <Header title={"MY COURSES"}/>
         <Routes>
-            <Route path="/" element={<Navigate to="/core/preview-courses" />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/core/preview-courses/" element={<CoursesPage/>}/>
             <Route path="/core/preview-courses/:courseId" element={<CourseDetails />} />
         </Routes>

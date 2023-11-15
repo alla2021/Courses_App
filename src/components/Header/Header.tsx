@@ -1,6 +1,7 @@
 import React from "react";
 import {AppBar, Toolbar, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
+import Button from '@mui/material/Button';
 
 type HeaderProps = {
     title: string,
@@ -13,13 +14,15 @@ const Header = ({title}: HeaderProps) => {
             elevation={0}
             sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
-            <Toolbar sx={{ flexWrap: 'wrap' }}>
-                <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                    {title}
-                </Typography>
-                <nav>
-                    <NavLink to="/core/preview-courses">Courses Page</NavLink>
-                </nav>
+            <Toolbar sx={{ display:'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+                        {title}
+                    </Typography>
+                </NavLink>
+                <NavLink to="/core/preview-courses">
+                    <Button variant="contained">Courses Page</Button>
+                </NavLink>
             </Toolbar>
         </AppBar>
     )
