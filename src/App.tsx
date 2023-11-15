@@ -12,7 +12,7 @@ function App() {
     <>
         <Header title={"MY COURSES"}/>
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/Courses_App/" element={<HomePage />} />
             <Route path="/core/preview-courses/" element={<CoursesPage/>}/>
             <Route path="/core/preview-courses/:courseId" element={<CourseDetails />} />
         </Routes>

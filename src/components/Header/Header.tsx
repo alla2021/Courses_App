@@ -15,7 +15,7 @@ const Header = ({title}: HeaderProps) => {
             sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
             <Toolbar sx={{ display:'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <NavLink to="/Courses_App/" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
                         {title}
                     </Typography>
